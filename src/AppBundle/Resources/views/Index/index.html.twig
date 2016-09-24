@@ -1,0 +1,194 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    <div class="middle">
+        <div class="container">
+            <div class="header_text">
+                Минск, ул. Рафиева, д. 45, корп. 2, кв. 175<br>
+                <a href="#" title="Подробности лицевого счёта и дома">Подробности лицевого счёта и дома</a>
+            </div><!-- .header_text-->
+            <ul class="top_menu ul-clear">
+                <li><a href="#" title="Сводка">Сводка <span>на 20 ноября 2013</span></a></li>
+                <li><a href="#" title="Показания счётчиков">Показания счётчиков</a></li>
+                <li><a href="#" title="Начисления">Начисления <span>249 500</span></a></li>
+                <li><a href="#" title="Где оплатить">Где оплатить</a></li>
+                <li><a href="#" title="Куда обращаться">Куда обращаться</a></li>
+                <li class="active"><a href="#" title="Доп. услуги">Доп. услуги</a></li>                
+            </ul>
+            <div class="searvise_search">
+                <form id="searvise_search" method="get" action="#">
+                    <input class="search_text" type="text" placeholder="Искать...">
+                    <input class="search_btn" type="button" value="">
+                    <span class="input_clear">очистить</span>
+                </form>
+            </div>
+            <ul class="bread_crumbs  ul-clear">
+                <li><a href="#" title="Все услуги">Все услуги</a></li>
+                <li class="bread_crumbs_separator">→</li> 
+                <li>Ремонт и отделка</li>
+                <li class="bread_crumbs_separator">↓</li>           
+            </ul> 	
+            <div class="content">
+                <div class="search">
+                    <form>
+                        Искать в этом разделе:
+                        <input class="search_text" type="text" placeholder="Искать...">
+                        <input class="search_btn" type="button" value="">
+                    </form>
+                </div>
+                <div class="menu_main">
+                    <div class="menu_main_block">
+                        <span>Комплексный ремонт «под ключ»</span>
+                        <ul class="ul-clear">
+                            <li><a href="#" title="Мастер на все руки (мелкий ремонт)">Мастер на все руки (мелкий ремонт)</a></li>
+                            <li><a href="#" title="Ремонт ванной комнаты и санузла «под ключ»">Ремонт ванной комнаты и санузла «под ключ»</a></li>
+                            <li><a href="#" title="Ремонт квартир, коттеджей">Ремонт квартир, коттеджей</a></li>
+                            <li><a href="#" title="Ремонт офисов, общественных помещений ">Ремонт офисов, общественных помещений</a></li>
+                            <li><a href="#" title="Вывоз мусора ">Вывоз мусора</a></li>
+                        </ul>
+                    </div><!-- .menu_main_block-->		
+                    <div class="menu_main_block">
+                        <span>Отделочные работы. Внутренняя отделка стен</span>
+                        <ul class="ul-clear">
+                            <li><a href="#" title="Лепнина ">Лепнина </a></li>
+                            <li><a href="#" title="Монтаж гипсокартона">Монтаж гипсокартона</a></li>
+                            <li><a href="#" title="Монтаж панелей ПВХ">Монтаж панелей ПВХ</a></li>
+                            <li><a href="#" title="Нанесение декоративной штукатурки">Нанесение декоративной штукатурки</a></li>
+                            <li><a href="#" title="Облицовка плиткой">Облицовка плиткой</a></li>
+                            <li><a href="#" title="Оклейка обоями">Оклейка обоями</a></li>         
+                            <li><a href="#" title="Покраска, обои под покраску">Покраска, обои под покраску</a></li>         
+                            <li><a href="#" title="Художественная роспись. Фрески.">Художественная роспись. Фрески.</a></li>         
+                            <li><a href="#" title="Шпаклевка стен">Шпаклевка стен</a></li>
+                            <li><a href="#" title="Штукатурка стен">Штукатурка стен</a></li>
+                        </ul>
+                    </div><!-- .menu_main_block-->
+
+                    <div class="menu_main_block">
+                        <span>Перепланировка квартир</span>
+                        <ul class="ul-clear">
+                            <li><a href="#" title="Возведение перегородок">Возведение перегородок</a></li>
+                            <li><a href="#" title="Демонтаж стен">Демонтаж стен</a></li>
+                            <li><a href="#" title="Межкомнатные перегородки ">Межкомнатные перегородки </a></li>
+                            <li><a href="#" title="Разрушение перегородок, проемы">Разрушение перегородок, проемы</a></li>
+                            <li><a href="#" title="Сантехнические перегородки">Сантехнические перегородки</a></li>
+                        </ul>
+                    </div><!-- .menu_main_block-->
+                    <div class="separator"></div>
+                </div><!-- .menu_main-->
+                <div class="card">
+                    <div class="card_title"><img src="{{ asset('static/demo/demo1.png') }}" alt="">Козловский Н.В., ИП</div>
+                    <ul class="card_items ul-clear">
+                        <li>Ремонт и отделка квартир</li>
+                        <li>Плиточные работы</li>
+                        <li>Сантехнические работы</li>
+                        <li>Электрика</li>
+                        <li>Малярные работы</li>
+                        <li>Гипсокартонные работы</li>
+                    </ul>
+                    <div class="card_text">
+                        <p>Наши специалисты - мастера своего дела, проверенные временем. Также мы беремся за отдельные виды внутренних отделочных работ. Поможем подобрать оптимальные материалы. Воплотим Ваши идеи в жизнь.</p> 
+                        <p>Производим ремонт от косметического до люкс и премиум класса. Также выполним работы по покраске различных металлоконструкций из соответствующего оборудования (опыт и качество гарантируем).</p>
+                    </div>
+                    <div class="card_contact">
+                        г. Минск, ул. Орловская, 40 А, офис 46
+                        <ul class="ul-clear">
+                            <li>(017) 233-32-37</li>
+                            <li>(029) 677-06-71</li>
+                            <li>(029) 770-67-17</li>
+                            <li><a href="#" title="remontbest.by">remontbest.by</a></li>
+                        </ul>
+                    </div><!-- .sidebar#sideRight_two -->
+                    <div class="separator"></div>
+                </div><!-- card-->
+                <div class="card">
+                    <div class="card_title"><img src="{{ asset('static/demo/demo1.png') }}" alt="">Козловский Н.В., ИП</div>
+                    <ul class="card_items ul-clear">
+                        <li>Ремонт и отделка квартир</li>
+                        <li>Плиточные работы</li>
+                        <li>Сантехнические работы</li>
+                        <li>Электрика</li>
+                        <li>Малярные работы</li>
+                        <li>Гипсокартонные работы</li>
+                    </ul>
+                    <div class="card_text">
+                        <p>Наши специалисты - мастера своего дела, проверенные временем. Также мы беремся за отдельные виды внутренних отделочных работ. Поможем подобрать оптимальные материалы. Воплотим Ваши идеи в жизнь.</p> 
+                        <p>Производим ремонт от косметического до люкс и премиум класса. Также выполним работы по покраске различных металлоконструкций из соответствующего оборудования (опыт и качество гарантируем).</p>
+                    </div>
+                    <div class="card_contact">
+                        г. Минск, ул. Орловская, 40 А, офис 46
+                        <ul class="ul-clear">
+                            <li>(017) 233-32-37</li>
+                            <li>(029) 677-06-71</li>
+                            <li>(029) 770-67-17</li>
+                            <li><a href="#" title="remontbest.by">remontbest.by</a></li>
+                        </ul>
+                    </div><!-- .sidebar#sideRight_two -->
+                    <div class="separator"></div>
+                </div><!-- card-->				
+                <div class="pad-60"></div>
+            </div><!-- .content-->
+        </div>
+    </div>
+{% endblock %}
+{% block modal %}
+<div id="registration" class="modal-window-wrapper"><!-- Регистрация -->
+    <div class="div-registration">
+        <div class="btn-close" onclick="registation_close();return false;"><span class="exit-big">&nbsp;</span></div>
+        <div class="div-registration_title">Регистрация</div>
+        <ul class="ul-clear">
+            <li><span class="div-registration_li active">Данные лицевого</span><span>→</span></li>
+            <li><span class="div-registration_li">Данные для входа</span><span>→</span></li>
+            <li><span class="div-registration_li">Готово!</span></li>
+        </ul>
+        <div class="div-registration_wrapper-2">
+            <div class="div-registration_e-mail">
+                <div class="orange_delete">E-mail</div>
+                <input type="text">
+            </div>
+            <div class="div-registration_password">
+                Пароль <span class="gray-12">(не менее 6 символов)</span><br>
+                <input type="text">
+            </div>
+            <div class="div-registration_password">
+                Повторите пароль<br>
+                <input type="text">
+            </div>
+            <div class="separator pad-20"></div>
+            <div class="div-registration_next">
+                <input type="button" value="Далее"> <span class="orange_delete">Tакой e-mail уже используется<span>
+            </span></span></div>
+        </div>
+        <div class="div-registration_footer">
+            Сожалеем, ваш дом не подключён к нашей системе.
+            Вы можете зарегистрироваться с другим лицевым
+            счётом или оставить заявку на подключение этого.
+            <div class="div-registration_footer_button">
+                <input type="text" value="E-mail для связи с вами">	
+                <input type="button" value="Оставить заявку" class="orange-43">
+            </div>
+        </div>		
+    </div>	
+</div>
+<div id="login" class="modal-window-wrapper">
+    <div class="div-registration">
+        <div class="btn-close" onclick="login_close();return false;"><span class="exit-big">&nbsp;</span></div>
+        <div class="div-registration_title">Авторизация</div>
+        <div class="div-registration_wrapper-2">
+            <form action="{{ path('login') }}" method="post">
+                <div class="div-login_e-mail">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email" name="_username" value="" />
+                </div>
+                <div class="div-login_password">
+                    Пароль</label>
+                    <input type="password" id="password" name="_password" />
+                </div>
+                <div class="separator pad-20"></div>
+                <div class="div-registration_next">
+                    <input type="submit" value="Войти">
+                    <span class="orange_delete"><span></span></span>
+                </div>
+            </form>   
+        </div>
+    </div>	
+</div>
+{% endblock %}

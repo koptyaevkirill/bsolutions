@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Username: {{ app.user.username }}</p>
+    {% endif %}
+    <div><a href="{{path('admin')}}">Login</a></div>
+    <div><a href="{{path('logout')}}">Logout</a></div>  
+{% endblock %}

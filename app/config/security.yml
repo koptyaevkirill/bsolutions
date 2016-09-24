@@ -1,0 +1,32 @@
+security:
+    providers:
+        webservice:
+            id: userProvider
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        demo_secured_area:
+            anonymous: true
+            pattern:    ^/
+            simple_form:
+                authenticator: userAuthenticator
+                check_path: login_check
+                login_path: login
+            logout:
+                path:   /logout
+                target: /
+#        secured_area:
+#            anonymous: true
+#            pattern:    ^/
+#            logout:
+#                path:   /logout
+#                target: /
+        default:
+            anonymous: ~
+            http_basic: ~
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }

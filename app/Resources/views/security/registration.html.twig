@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+<form class="form-signin" name='register_form' id='register_form' method='post' action='{{path('registration_post')}}'>
+    {{ form_widget(form.username) }}<br>
+    {{ form_widget(form.password) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
+{% endblock %}
