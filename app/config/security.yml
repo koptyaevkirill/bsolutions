@@ -14,7 +14,7 @@ security:
             simple_form:
                 authenticator: userAuthenticator
                 check_path: login_check
-                login_path: login
+                login_path: /#login
             logout:
                 path:   /logout
                 target: /

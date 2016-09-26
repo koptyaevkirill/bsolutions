@@ -173,19 +173,22 @@
         <div class="btn-close" onclick="login_close();return false;"><span class="exit-big">&nbsp;</span></div>
         <div class="div-registration_title">Авторизация</div>
         <div class="div-registration_wrapper-2">
-            <form action="{{ path('login') }}" method="post">
+            {% if error %}
+                <div>{{ error.message }}</div>
+            {% endif %}
+            <form action="{{path('login_check')}}" method="post" id ="login"> 
                 <div class="div-login_e-mail">
-                    <label for="email">E-mail</label>
-                    <input type="text" id="email" name="_username" value="" />
+                    <div>E-mail</div>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
                 </div>
                 <div class="div-login_password">
-                    Пароль</label>
+                    <div>Пароль</div>
                     <input type="password" id="password" name="_password" />
                 </div>
                 <div class="separator pad-20"></div>
                 <div class="div-registration_next">
-                    <input type="submit" value="Войти">
-                    <span class="orange_delete"><span></span></span>
+                    <button type="submit">Далее</button>
+                    {#<span class="orange_delete">Tакой e-mail уже используется<span></span></span>#}
                 </div>
             </form>   
         </div>
