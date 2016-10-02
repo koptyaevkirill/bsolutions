@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block title %}_ ЖКХ _{% endblock %}</title>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans:700,400&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    {#<link href='http://fonts.googleapis.com/css?family=PT+Sans:700,400&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>#}
     <!--[if IE ]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" /><![endif]-->
     <link rel="stylesheet" href="{{ asset('static/css/style.css') }}" type="text/css" media="screen, projection" />
     {% block stylesheets %}{% endblock %}
@@ -19,7 +19,7 @@
                 <div class="header_user_exit"><a href="{{path('logout')}}">Выход <span class="exit">&nbsp;</span></a></div>
             {% else %}
                 <div class="header_user_login"><a title="Войти" onclick="login_open();return false;">Войти</a></div>
-                <div class="header_user_registration"><a title="Регистрация" href=""onclick="registation_open();return false;">Регистрация</a></div>
+                <div class="header_user_registration"><a title="Регистрация" onclick="registation_open();return false;">Регистрация</a></div>
             {% endif %}
             <div class="header_user_personal-account"><a title="Все лицевые счета" href="#"><span class="personal-account">&nbsp;</span>Все лицевые счета</a></div>
 	</div>
@@ -62,6 +62,7 @@
 	<link rel="stylesheet" href="{{ asset('static/css/jquery.formstyler.css') }}" type="text/css" />
 	<script type="text/javascript" src="{{ asset('static/js/script.js') }}"></script>
     	<script type="text/javascript" src="{{ asset('static/js/inputstyler.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('static/js/authorization.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

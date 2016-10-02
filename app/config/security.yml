@@ -9,7 +9,7 @@ security:
             security: false
 
         demo_secured_area:
-            anonymous: true
+            anonymous: ~
             pattern:    ^/
             simple_form:
                 authenticator: userAuthenticator

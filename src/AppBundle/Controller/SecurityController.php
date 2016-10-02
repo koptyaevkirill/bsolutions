@@ -4,11 +4,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class SecurityController extends Controller {
+class SecurityController extends Controller
+{
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction() {
+    public function loginAction()
+    {
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -20,13 +22,15 @@ class SecurityController extends Controller {
     /**
      * @Route("/login_check", name="login_check")
      */
-    public function loginCheckAction() {
+    public function loginCheckAction()
+    {
         
     }
     /**
      * @Route("/logout", name="logout")
      */
-    public function logoutAction() {
+    public function logoutAction()
+    {
         
     }
 }

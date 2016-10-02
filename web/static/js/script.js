@@ -17,19 +17,3 @@ function updateField(e){
     }
     e.next('.chars').text(m - e.val().length);
 }
-function registation_open() {
-    $('#registration').css('display','block');
-    $('#registration').animate({'opacity':'1'},400);
-}
-function registation_close() {
-    $('#registration').animate({'opacity':'0'},400);
-    $('#registration').hide();
-}
-function login_open() {
-    $('#login').css('display','block');
-    $('#login').animate({'opacity':'1'},400);
-}
-function login_close() {
-    $('#login').animate({'opacity':'0'},400);
-    $('#login').hide();
-}

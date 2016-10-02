@@ -139,23 +139,16 @@
             <li><span class="div-registration_li">Данные для входа</span><span>→</span></li>
             <li><span class="div-registration_li">Готово!</span></li>
         </ul>
-        <div class="div-registration_wrapper-2">
-            <div class="div-registration_e-mail">
-                <div class="orange_delete">E-mail</div>
+        <div class="div-registration_wrapper">
+            <div class="id-person">
+                Личный номер владельца жилья<br>
                 <input type="text">
             </div>
-            <div class="div-registration_password">
-                Пароль <span class="gray-12">(не менее 6 символов)</span><br>
-                <input type="text">
-            </div>
-            <div class="div-registration_password">
-                Повторите пароль<br>
-                <input type="text">
-            </div>
-            <div class="separator pad-20"></div>
-            <div class="div-registration_next">
-                <input type="button" value="Далее"> <span class="orange_delete">Tакой e-mail уже используется<span>
-            </span></span></div>
+            <div class="score">
+                Номер лицевого счёта<br>
+                <input type="text">			
+            </div>			
+            <input type="button" value="Далее">
         </div>
         <div class="div-registration_footer">
             Сожалеем, ваш дом не подключён к нашей системе.
@@ -173,25 +166,30 @@
         <div class="btn-close" onclick="login_close();return false;"><span class="exit-big">&nbsp;</span></div>
         <div class="div-registration_title">Авторизация</div>
         <div class="div-registration_wrapper-2">
-            {% if error %}
-                <div>{{ error.message }}</div>
-            {% endif %}
             <form action="{{path('login_check')}}" method="post" id ="login"> 
                 <div class="div-login_e-mail">
                     <div>E-mail</div>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                    <input type="text" id="username" name="_email" value="{{ last_username }}" required="required" />
                 </div>
                 <div class="div-login_password">
                     <div>Пароль</div>
-                    <input type="password" id="password" name="_password" />
+                    <input type="password" id="password" name="_password" required="required" />
                 </div>
                 <div class="separator pad-20"></div>
                 <div class="div-registration_next">
-                    <button type="submit">Далее</button>
-                    {#<span class="orange_delete">Tакой e-mail уже используется<span></span></span>#}
+                    <input type="submit" value="Войти" class="">
+                    <span class="orange_delete"><span></span></span>
                 </div>
             </form>   
         </div>
     </div>	
 </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        var urls = {
+            'login': '{{path("login_check")}}',
+            'homepage': '{{path("homepage")}}'
+    	};
+    </script>
 {% endblock %}

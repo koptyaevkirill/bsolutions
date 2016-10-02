@@ -25,6 +25,9 @@ class UserAuthenticator implements SimpleFormAuthenticatorInterface {
             if(! $user instanceof User) {
                 throw new AuthenticationException('Invalid username or password');
             }
+            if(($token->getCredentials()!= null) && ($token->getCredentials()!= $user->getPassword())) {
+                throw new AuthenticationException('Invalid username or password');
+            }
         } catch (UsernameNotFoundException $e) {
             throw new AuthenticationException('Invalid username or password');
         }
