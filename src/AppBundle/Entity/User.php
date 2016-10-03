@@ -33,10 +33,11 @@ class User implements UserInterface, EquatableInterface
 
     /**
      * @var string
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
+    private $name;
+    
     private $username;
-
     /**
      * @var string
      *
@@ -78,11 +79,7 @@ class User implements UserInterface, EquatableInterface
      */
     public function setEmail($email)
     {
-        $email = is_null($email) ? '' : $email;
-        parent::setEmail($email);
-        $this->setUsername($email);
-
-        return $this;
+        return $this->email;
     }
 
     /**
@@ -98,15 +95,24 @@ class User implements UserInterface, EquatableInterface
     /**
      * Set username
      *
-     * @param string $username
+     * @param string $name
      *
      * @return User
      */
-    public function setUsername($username)
+    public function setname($name)
     {
-        $this->username = $username;
+        $this->name = $name;
 
         return $this;
+    }
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -116,7 +122,7 @@ class User implements UserInterface, EquatableInterface
      */
     public function getUsername()
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
@@ -205,7 +211,7 @@ class User implements UserInterface, EquatableInterface
         if ($this->salt !== $user->getSalt()) {
             return false;
         }
-        if ($this->username !== $user->getUsername()) {
+        if ($this->email !== $user->getUsername()) {
             return false;
         }
         return true;

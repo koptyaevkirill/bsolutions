@@ -23,11 +23,8 @@ class UserProvider implements UserProviderInterface {
         }
         
         $user = $this->em->getRepository('AppBundle:User')->findOneBy(
-            ['username' => $username]
+            ['email' => $username]
         );
-        //$user->s
-        
-        var_dump($user);
         /*$user = new User();
         $user->setEmail('w@tut.by');
         $user->setUsername('w');
