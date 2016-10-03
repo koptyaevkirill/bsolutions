@@ -26,7 +26,7 @@ class User implements UserInterface, EquatableInterface
 
     /**
      * @var string
-     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
@@ -66,14 +66,14 @@ class User implements UserInterface, EquatableInterface
     
     /**
      * @var integer
-     * @ORM\Column(name="personal_number", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="personal_number", type="integer", length=255)
      */
     private $personalNumber;
     
     /**
      * @var integer
      *
-     * @ORM\Column(name="account_number", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="account_number", type="integer", length=255)
      */
     private $accountNumber;
     

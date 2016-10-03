@@ -73,12 +73,14 @@ class IndexController extends AbstractController
         $form->handleRequest($request);
         $helper = new IdForm();
         if ($form->isValid()) {
+            $data = ['status' => 'ok', 'entity' => $entity];
             $entity = $form->getData();
+            $em->persist($entity);
+            $em->flush();
         } else {
             $data['errors'] = $helper->getFormErrors($form);
         }
-        $em->persist($entity);
-        $em->flush();
+        
         return $this->renderJson($data);
     }
 }

@@ -36,6 +36,6 @@ class RegistrationType extends AbstractType
      */
     public function getName()
     {
-        return 'user';
+        return 'user_registration';
     }
 }
