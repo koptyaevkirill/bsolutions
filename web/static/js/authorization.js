@@ -1,10 +1,25 @@
 $(document).ready(function() {
-    $('form').submit(function() {
+    $('form#login').submit(function() {
         var result = id_ajax({url: urls['login'], data: $('form').serializeArray(), dataType: 'json', async: false}, view);
         console.log(result);
         return false;
     });
+    var steps = $("#registration form").children(".step");
+    var navSteps = $("#registration ul li").children(".div-registration_li");
+    $(steps[0]).show();
+    $(navSteps[0]).addClass('active');
+    var current_step = 0;
+    $("input.next").click(function() {
+        current_step++;
+        changeStep(steps, current_step, navSteps);
+    });
 });
+function changeStep(steps, i, navSteps) {
+    $(steps).hide();
+    $(navSteps).removeClass('active');
+    $(navSteps[i]).addClass('active');
+    $(steps[i]).show(200);
+}
 function view(result) {
     if (result['status']=='error') {
         $('#login .orange_delete').html(result['error']).slideDown(400);

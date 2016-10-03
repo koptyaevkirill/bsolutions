@@ -139,18 +139,49 @@
             <li><span class="div-registration_li">Данные для входа</span><span>→</span></li>
             <li><span class="div-registration_li">Готово!</span></li>
         </ul>
-        <div class="div-registration_wrapper">
-            <div class="id-person">
-                Личный номер владельца жилья<br>
-                <input type="text">
+        <form action="" method="post" id ="login">
+            <div class="div-registration_wrapper step">
+                <div class="id-person">
+                    Личный номер владельца жилья<br>
+                    <input type="text">
+                </div>
+                <div class="score">
+                    Номер лицевого счёта<br>
+                    <input type="text">			
+                </div>
+                <input type="button" class="next" value="Далее">
             </div>
-            <div class="score">
-                Номер лицевого счёта<br>
-                <input type="text">			
-            </div>			
-            <input type="button" value="Далее">
-        </div>
-        <div class="div-registration_footer">
+            <div class="div-registration_wrapper-2 step">
+                <div class="div-registration_e-mail">
+                    <div class="orange_delete">E-mail</div>
+                    <input type="text">
+                </div>
+                <div class="div-registration_password">
+                    Пароль <span class="gray-12">(не менее 6 символов)</span><br>
+                    <input type="text">
+                </div>
+                <div class="div-registration_password">
+                    Повторите пароль<br>
+                    <input type="text">
+                </div>
+                <div class="separator pad-20"></div>
+                <div class="div-registration_next">
+                    <input type="button" class="next" value="Далее"> <span class="orange_delete">Tакой e-mail уже используется<span>
+                </span></span></div>
+            </div>
+            <div class="div-registration_wrapper-2 step">
+                Подтвердите
+                <div class="div-registration_inner">
+                    Я,
+                    <input type="text" placeholder="Ваше ФИО"><br>
+                    согласен <a href="#">с условиями пользовательской оферты</a>
+                </div>
+                <div style="text-align:center">
+                <input class="orange-43" type="button" value="Подтвердить и зарегистрироваться">
+                </div>
+            </div>
+        </form>
+        {#<div class="div-registration_footer">
             Сожалеем, ваш дом не подключён к нашей системе.
             Вы можете зарегистрироваться с другим лицевым
             счётом или оставить заявку на подключение этого.
@@ -158,7 +189,7 @@
                 <input type="text" value="E-mail для связи с вами">	
                 <input type="button" value="Оставить заявку" class="orange-43">
             </div>
-        </div>		
+        </div>#}		
     </div>	
 </div>
 <div id="login" class="modal-window-wrapper">
