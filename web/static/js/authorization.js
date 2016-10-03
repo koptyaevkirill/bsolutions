@@ -4,7 +4,7 @@ $(document).ready(function() {
         console.log(result);
         return false;
     });
-    $('#registration .orange-43').click(function() {
+    $('form#registration').submit(function() {
         var result = id_ajax({url: urls['registration'], data: $('form#registration').serializeArray(), dataType: 'json', async: false}, views);
         console.log($('form#registration').serializeArray());
         return false;

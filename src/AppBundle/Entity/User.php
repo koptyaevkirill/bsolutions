@@ -26,7 +26,7 @@ class User implements UserInterface, EquatableInterface
 
     /**
      * @var string
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
      */
     private $email;
 
@@ -66,14 +66,14 @@ class User implements UserInterface, EquatableInterface
     
     /**
      * @var integer
-     * @ORM\Column(name="personal_number", type="integer", length=255)
+     * @ORM\Column(name="personal_number", type="integer", length=255, nullable=true)
      */
     private $personalNumber;
     
     /**
      * @var integer
      *
-     * @ORM\Column(name="account_number", type="integer", length=255)
+     * @ORM\Column(name="account_number", type="integer", length=255, nullable=true)
      */
     private $accountNumber;
     
@@ -82,8 +82,12 @@ class User implements UserInterface, EquatableInterface
      */
     private $isConfirm;
     
-    
-    /**
+    public function __construct() {
+        $this->isConfirm = FALSE;
+        $this->roles = ['ROLE_ADMIN'];
+    }
+
+        /**
      * Get id
      *
      * @return integer

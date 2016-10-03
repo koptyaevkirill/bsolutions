@@ -46,7 +46,6 @@ class IndexController extends AbstractController
         return $this->render('AppBundle:Index:index.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-            'default_currency' => json_encode($this->get('session')->get('default_currency')),
         ]);
     }
     /**
@@ -73,7 +72,11 @@ class IndexController extends AbstractController
         $form = $this->createRegistrationForm($entity);
         $form->handleRequest($request);
         $helper = new IdForm();
-        $entity = $form->getData();
+        if ($form->isValid()) {
+            $entity = $form->getData();
+        } else {
+            $data['errors'] = $helper->getFormErrors($form);
+        }
         $em->persist($entity);
         $em->flush();
         return $this->renderJson($data);
