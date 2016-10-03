@@ -1,10 +1,13 @@
 <?php
 namespace AppBundle\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use AppBundle\Helper\IdForm;
+use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationType;
+use AppBundle\Controller\AbstractController;
+use AppBundle\Helper\IdForm;
 
 class IndexController extends AbstractController
 {
@@ -15,11 +18,15 @@ class IndexController extends AbstractController
     {
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
+        $entity = new User();
+        $form   = $this->createRegistrationForm($entity);
         if (!$request->isXmlHttpRequest()) {
             $lastUsername = $authenticationUtils->getLastUsername();
             return $this->render('AppBundle:Index:index.html.twig', [
                 'last_username' => $lastUsername,
-                'error'         => $error,
+                'error'  => $error,
+                'entity' => $entity,
+                'form'   => $form->createView(),
             ]);
         } else {
             if ($error != null) {
@@ -34,14 +41,20 @@ class IndexController extends AbstractController
      */
     public function registrationAction()
     {
-        return $this->render('AppBundle:Index:index.html.twig');
+        $entity = new User();
+        $form   = $this->createRegistrationForm($entity);
+        return $this->render('AppBundle:Index:index.html.twig', [
+            'entity' => $entity,
+            'form'   => $form->createView(),
+            'default_currency' => json_encode($this->get('session')->get('default_currency')),
+        ]);
     }
     /**
      * Creates a form to registration a user entity.
      * @param User $entity The entity
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createRegistrationForm(Company $entity) {
+    private function createRegistrationForm(User $entity) {
         $form = $this->createForm(new RegistrationType(), $entity, [
             'action' => $this->generateUrl('registration_post'),
             'method' => 'POST'
@@ -54,23 +67,15 @@ class IndexController extends AbstractController
      * @Method("POST")
      */
     public function createAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
         $data = ['status' => 'error'];
         $entity = new User();
         $form = $this->createRegistrationForm($entity);
         $form->handleRequest($request);
         $helper = new IdForm();
-        if ($form->isValid()) {
-//            $response = API::getInstance()->post('register', $entity->jsonSerialize());
-//            if ($response->status == 'ok') {
-//                $data['status'] = 'ok';
-//                $data['_username'] = $entity->getEmail();
-//                $data['_password'] = $entity->getPassword();
-//            } else {
-//                $data['errors'] = $helper->translateErrors($response->errors, $this->get('translator'));
-//            }
-        } else {
-            $data['errors'] = $helper->getFormErrors($form);
-        }
+        $entity = $form->getData();
+        $em->persist($entity);
+        $em->flush();
         return $this->renderJson($data);
     }
 }

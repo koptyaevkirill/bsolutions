@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,7 +18,6 @@ class User implements UserInterface, EquatableInterface
 {
     /**
      * @var integer
-     * 
      * @ORM\Column(name="id", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,40 +26,63 @@ class User implements UserInterface, EquatableInterface
 
     /**
      * @var string
-     * 
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
     
-    private $username;
     /**
      * @var string
-     *
+     */
+    private $username;
+    
+    /**
+     * @var string
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
+    
+    /**
+     * @var string
+     */
+    private $passwordRepeat;
 
     /**
      * @var array
-     *
      * @ORM\Column(name="roles", type="array", nullable=true)
      */
     private $roles;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="salt", type="string", length=255, nullable=true)
      */
     private $salt;
-
-
+    
+    /**
+     * @var integer
+     * @ORM\Column(name="personal_number", type="integer", length=255)
+     */
+    private $personalNumber;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="account_number", type="integer", length=255)
+     */
+    private $accountNumber;
+    
+    /**
+     * @ORM\Column(name="is_confirm", type="boolean")
+     */
+    private $isConfirm;
+    
+    
     /**
      * Get id
      *
@@ -68,6 +91,48 @@ class User implements UserInterface, EquatableInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Set accountNumber
+     *
+     * @param string $accountNumber
+     *
+     * @return User
+     */
+    public function setAccountNumber($accountNumber)
+    {
+        return $this->accountNumber;
+    }
+    /**
+     * Get accountNumber
+     *
+     * @return integer
+     */
+    public function getAccountNumber()
+    {
+        return $this->accountNumber;
+    }
+    
+    /**
+     * Set personalNumber
+     *
+     * @param string $personalNumber
+     *
+     * @return User
+     */
+    public function setPersonalNumber($personalNumber)
+    {
+        return $this->personalNumber;
+    }
+    /**
+     * Get personalNumber
+     *
+     * @return integer
+     */
+    public function getPersonalNumber()
+    {
+        return $this->personalNumber;
     }
 
     /**
@@ -99,7 +164,7 @@ class User implements UserInterface, EquatableInterface
      *
      * @return User
      */
-    public function setname($name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -196,6 +261,26 @@ class User implements UserInterface, EquatableInterface
     {
         return $this->salt;
     }
+    
+    /**
+     * Set passwordRepeat
+     * @param string $passwordRepeat
+     * @return User
+     */
+    public function setPasswordRepeat($passwordRepeat) {
+        $this->passwordRepeat = $passwordRepeat;
+        return $this;
+    }
+    
+    /**
+     * Get passwordRepeat
+     * @return string
+     */
+    public function getPasswordRepeat() {
+        return $this->passwordRepeat;
+    }
+    
+    
 
     public function eraseCredentials() {
         

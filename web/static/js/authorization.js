@@ -4,6 +4,11 @@ $(document).ready(function() {
         console.log(result);
         return false;
     });
+    $('#registration .orange-43').click(function() {
+        var result = id_ajax({url: urls['registration'], data: $('form#registration').serializeArray(), dataType: 'json', async: false}, views);
+        console.log($('form#registration').serializeArray());
+        return false;
+    });
     var steps = $("#registration form").children(".step");
     var navSteps = $("#registration ul li").children(".div-registration_li");
     $(steps[0]).show();
@@ -19,6 +24,9 @@ function changeStep(steps, i, navSteps) {
     $(navSteps).removeClass('active');
     $(navSteps[i]).addClass('active');
     $(steps[i]).show(200);
+}
+function views(result) {
+    console.log(result);
 }
 function view(result) {
     if (result['status']=='error') {

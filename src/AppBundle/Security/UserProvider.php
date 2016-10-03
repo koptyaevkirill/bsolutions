@@ -27,12 +27,14 @@ class UserProvider implements UserProviderInterface {
         );
         /*$user = new User();
         $user->setEmail('w@tut.by');
-        $user->setUsername('w');
+        $user->setName('Якушевский Виталий Викторович');
         $user->setPassword('w');
         $user->setRoles(['ROLE_ADMIN']);
+        $user->setPersonalNumber('123');
+        $user->setAccountNumber('123');
         $this->em->persist($user);
         $this->em->flush();
-        exit();*/ 
+        exit();*/
         return $user;
     }
 
