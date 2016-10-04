@@ -26,7 +26,7 @@ class IndexController extends AbstractController
                 'last_username' => $lastUsername,
                 'error'  => $error,
                 'entity' => $entity,
-                'form'   => $form->createView(),
+                'form'   => $form->createView()
             ]);
         } else {
             if ($error != null) {
@@ -36,18 +36,7 @@ class IndexController extends AbstractController
             }
         }
     }
-    /**
-     * @Route("/#registration", name="registration")
-     */
-    public function registrationAction()
-    {
-        $entity = new User();
-        $form   = $this->createRegistrationForm($entity);
-        return $this->render('AppBundle:Index:index.html.twig', [
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ]);
-    }
+    
     /**
      * Creates a form to registration a user entity.
      * @param User $entity The entity
@@ -74,10 +63,23 @@ class IndexController extends AbstractController
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $form->getData();
-            var_dump($form->getData());
+            $hash = md5(uniqid($entity->getEmail(), true));
+            $entity->setHash($hash);
             $data = ['status' => 'ok', 'entity' => $entity];
             $em->persist($entity);
             $em->flush();
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Confirm registration')
+                ->setFrom('koptyaevkiril@gmail.com')
+                ->setTo($entity->getEmail())
+                ->setBody(
+                    $this->renderView('Emails/registration.html.twig', [
+                        'name' => $entity->getName(),
+                        'hash' => $entity->getHash()
+                    ]),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
         } else {
             $data['errors'] = $helper->getFormErrors($form);
         }
@@ -102,5 +104,23 @@ class IndexController extends AbstractController
             $data = ['status' => 'ok'];
         }
         return $this->renderJson($data);
+    }
+    /**
+     * Creates a new User entity.
+     * @Route("/{hash}/confirm", name="email_confirm")
+     * @Method("GET")
+     */
+    public function emailConfirmAction($hash)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:User')->findOneBy(
+            ['hash' => $hash]
+        );
+        if($entity != NULL) {
+            $entity->setIsConfirm(TRUE);
+            $em->persist($entity);
+            $em->flush();
+        }
+        return $this->redirectToRoute('homepage', array('confirm' => 1), 301);
     }
 }

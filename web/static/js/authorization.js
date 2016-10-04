@@ -17,6 +17,9 @@ $(document).ready(function() {
     $("input.next").click(function() {
         validate(steps, current_step, navSteps);
     });
+    if(getUrlVars()["confirm"] == 1) {
+        modal_open('#registration5');
+    }
 });
 function email_confirm() {
     if($('#user_registration_email').val() == '') {
@@ -87,7 +90,12 @@ function changeStep(steps, i, navSteps) {
     $(steps[i]).show(200);
 }
 function views(result) {
-    console.log(result);
+    if(result['status'] == 'ok') {
+        registation_close();
+        modal_open('#registration4');
+    } else {
+        window.location = urls['homepage'];
+    }
 }
 function view(result) {
     if (result['status']=='error') {
@@ -132,4 +140,19 @@ function login_open() {
 function login_close() {
     $('#login').animate({'opacity':'0'},400);
     $('#login').hide();
+}
+function modal_open(modal) {
+    $(modal).css('display','block');
+    $(modal).animate({'opacity':'1'},400);
+}
+function modal_close(modal) {
+    $(modal).animate({'opacity':'0'},400);
+    $(modal).hide();
+}
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 }

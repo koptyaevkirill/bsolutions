@@ -1324,3 +1324,9 @@ form .step {
 .input-error {
     border: 2px solid #d14d07 !important;
 }
+a.button {
+    padding: 13px 6px;
+}
+a.button:hover {
+    color: #fff;
+}

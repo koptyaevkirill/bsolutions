@@ -65,6 +65,12 @@ class User implements UserInterface, EquatableInterface
     private $salt;
     
     /**
+     * @var string
+     * @ORM\Column(name="hash", type="string", length=255, nullable=true)
+     */
+    private $hash;
+    
+    /**
      * @var integer
      * @ORM\Column(name="personal_number", type="integer", length=255)
      */
@@ -87,7 +93,7 @@ class User implements UserInterface, EquatableInterface
         $this->roles = ['ROLE_ADMIN'];
     }
 
-        /**
+    /**
      * Get id
      *
      * @return integer
@@ -97,6 +103,13 @@ class User implements UserInterface, EquatableInterface
         return $this->id;
     }
     
+    public function setIsConfirm($isConfirm) {
+        $this->isConfirm = $isConfirm;
+    }
+    
+    public function getIsConfirm() {
+        return $this->isConfirm;
+    }
     /**
      * Set accountNumber
      *
@@ -140,7 +153,30 @@ class User implements UserInterface, EquatableInterface
     {
         return $this->personalNumber;
     }
+    
+    /**
+     * Set hash
+     *
+     * @param string $hash
+     *
+     * @return User
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+        return $this;
+    }
 
+    /**
+     * Get hash
+     *
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+    
     /**
      * Set email
      *
@@ -206,7 +242,6 @@ class User implements UserInterface, EquatableInterface
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -230,7 +265,6 @@ class User implements UserInterface, EquatableInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -254,7 +288,6 @@ class User implements UserInterface, EquatableInterface
     public function setSalt($salt)
     {
         $this->salt = $salt;
-
         return $this;
     }
 

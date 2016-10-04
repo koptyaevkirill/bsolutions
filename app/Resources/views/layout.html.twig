@@ -14,7 +14,7 @@
         <div class="header">
             <div class="logo"><a href="#"><img src="{{ asset('static/img/logo.png') }}" alt="Лого" title="Логотип Компании"></a></div><!--.logo-->
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                <div class="header_user">{{app.user.name}}</div>
+                <div class="header_user">{{app.user.name}} {% if not app.user.isConfirm %}<span class="orange_delete">Not confirmed!</span>{% endif %}</div>
                 <div class="header_user_data"><a title="Изменить личные данные" href="#">Изменить личные данные</a></div>
                 <div class="header_user_exit"><a href="{{path('logout')}}">Выход <span class="exit">&nbsp;</span></a></div>
             {% else %}
