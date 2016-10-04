@@ -1,3 +1,5 @@
+var steps = $("#registration form").children(".step");
+var navSteps = $("#registration ul li").children(".div-registration_li");
 $(document).ready(function() {
     $('form#login').submit(function() {
         var result = id_ajax({url: urls['login'], data: $('form').serializeArray(), dataType: 'json', async: false}, view);
@@ -9,16 +11,75 @@ $(document).ready(function() {
         console.log($('form#registration').serializeArray());
         return false;
     });
-    var steps = $("#registration form").children(".step");
-    var navSteps = $("#registration ul li").children(".div-registration_li");
     $(steps[0]).show();
     $(navSteps[0]).addClass('active');
     var current_step = 0;
     $("input.next").click(function() {
-        current_step++;
-        changeStep(steps, current_step, navSteps);
+        validate(steps, current_step, navSteps);
     });
 });
+function email_confirm() {
+    if($('#user_registration_email').val() == '') {
+        $('#user_registration_email').addClass('input-error');
+    } else {
+       var url = urls['validate'];
+        url = url.replace('|email|', $('#user_registration_email').val());
+        sendAjax(url, confirmEmail); 
+    }
+}
+function confirmEmail(msg) {
+    var pass = $('#user_registration_password').val();
+    var passRepeat = $('#user_registration_passwordRepeat').val();
+    if(pass.length >=6 && pass == passRepeat) {
+        $('input').removeClass('input-error');
+        if(msg['status'] == 'error') {
+            $('#user_registration_email').addClass('input-error');
+            $('span#email').html(msg['error']);
+        } else {
+            $('span#email').html('');
+            $(steps[1]).hide();
+            $(navSteps[1]).removeClass('active');
+            $(navSteps[2]).addClass('active');
+            $(steps[2]).show(200);
+        }
+    } else {
+        $('#user_registration_password, #user_registration_passwordRepeat').addClass('input-error');
+        $('span#email').html('Password invalid');
+    }
+}
+function validate(steps, current_step, navSteps) {
+    $(steps[current_step]).find('input[type=text]').each(function () {
+        if($(this).val() == '') {
+            $(this).addClass('input-error');
+            console.log($(this));
+        } else {
+            $(this).addClass('not-error').removeClass('input-error');
+        }
+    });
+    var sizeEmpty = $(steps[current_step]).find('.input-error').size();
+    if(sizeEmpty == 0) {
+        current_step++;
+        changeStep(steps, current_step, navSteps);
+    }
+}
+function sendAjax(url, funct) {
+    var Response=false;
+    $.ajax({
+        type: 'POST',
+        url: url,
+        success: function(msg) {
+            Response=msg;
+            if (funct!=undefined) {
+                funct(msg);
+            }
+        },
+        error:function(msg){
+            $('html').html(msg.responseText);
+            console.log('ошибка',msg.responseText);
+        }
+    });
+    return Response;
+}
 function changeStep(steps, i, navSteps) {
     $(steps).hide();
     $(navSteps).removeClass('active');

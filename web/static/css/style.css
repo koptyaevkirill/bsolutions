@@ -1321,3 +1321,6 @@ a.news_title-link {display:block; position:absolute; left:19px;}
 form .step {
     display: none;
 }
+.input-error {
+    border: 2px solid #d14d07 !important;
+}

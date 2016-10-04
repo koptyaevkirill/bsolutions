@@ -166,8 +166,9 @@
                 </div>
                 <div class="separator pad-20"></div>
                 <div class="div-registration_next">
-                    <input type="button" class="next" value="Далее"> <span class="orange_delete">Tакой e-mail уже используется<span>
-                </span></span></div>
+                    <input type="button" onclick="email_confirm();return false;" value="Далее">
+                    <span class="orange_delete" id="email"></span>
+                </div>
             </div>
             <div class="div-registration_wrapper-2 step">
                 Подтвердите
@@ -212,7 +213,8 @@
         var urls = {
             'login': '{{path("login_check")}}',
             'homepage': '{{path("homepage")}}',
-            'registration': '{{path("registration_post")}}'
+            'registration': '{{path("registration_post")}}',
+            'validate': '{{path("email_valid",{'email': '|email|'})}}'
     	};
     </script>
 {% endblock %}

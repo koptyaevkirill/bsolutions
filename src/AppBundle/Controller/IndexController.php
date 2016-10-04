@@ -66,14 +66,15 @@ class IndexController extends AbstractController
      * @Method("POST")
      */
     public function createAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
         $data = ['status' => 'error'];
         $entity = new User();
         $form = $this->createRegistrationForm($entity);
         $form->handleRequest($request);
         $helper = new IdForm();
         if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $entity = $form->getData();
+            var_dump($form->getData());
             $data = ['status' => 'ok', 'entity' => $entity];
             $em->persist($entity);
             $em->flush();
@@ -81,6 +82,25 @@ class IndexController extends AbstractController
             $data['errors'] = $helper->getFormErrors($form);
         }
         
+        return $this->renderJson($data);
+    }
+    /**
+     * Creates a new User entity.
+     * @Route("/{email}/valid", name="email_valid")
+     * @Method("POST")
+     */
+    public function emailValidAction($email)
+    {
+        $data = ['status' => 'error'];
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->findOneBy(
+            ['email' => $email]
+        );
+        if($user != NULL) {
+            $data = ['status' => 'error', 'error' => 'This email is already in use'];
+        } else {
+            $data = ['status' => 'ok'];
+        }
         return $this->renderJson($data);
     }
 }

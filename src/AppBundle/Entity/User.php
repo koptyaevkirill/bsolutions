@@ -106,7 +106,8 @@ class User implements UserInterface, EquatableInterface
      */
     public function setAccountNumber($accountNumber)
     {
-        return $this->accountNumber;
+        $this->accountNumber = $accountNumber;
+        return $this;
     }
     /**
      * Get accountNumber
@@ -127,7 +128,8 @@ class User implements UserInterface, EquatableInterface
      */
     public function setPersonalNumber($personalNumber)
     {
-        return $this->personalNumber;
+        $this->personalNumber = $personalNumber;
+        return $this;
     }
     /**
      * Get personalNumber
@@ -148,7 +150,8 @@ class User implements UserInterface, EquatableInterface
      */
     public function setEmail($email)
     {
-        return $this->email;
+        $this->email = $email;
+        return $this;
     }
 
     /**
@@ -171,7 +174,6 @@ class User implements UserInterface, EquatableInterface
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
     /**
@@ -283,7 +285,6 @@ class User implements UserInterface, EquatableInterface
     public function getPasswordRepeat() {
         return $this->passwordRepeat;
     }
-    
     
 
     public function eraseCredentials() {
